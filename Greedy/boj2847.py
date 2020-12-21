@@ -9,7 +9,7 @@ while True:
 
     for i in range(1, len(score_list)):
         if score_list[i-1] >= score_list[i]:
-            is_true = True;
+            is_true = True
             result += score_list[i-1] - score_list[i] + 1
             score_list[i-1] -= score_list[i-1] - (score_list[i] - 1)
     if not is_true:
