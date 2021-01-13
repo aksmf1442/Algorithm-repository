@@ -6,7 +6,7 @@ import java.util.List;
 public class LinkedListCycle {
   public boolean hasCycle(ListNode head) {
     if (head == null){
-      return 
+      return false;
     }
     List<ListNode> tmp = new ArrayList<>();
     ListNode node = head;
