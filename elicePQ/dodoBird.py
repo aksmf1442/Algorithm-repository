@@ -10,6 +10,3 @@ for i in range(2, n+1):
     result.append(a)
 
 print(" ".join(str(i) for i in result))
-
-
-
