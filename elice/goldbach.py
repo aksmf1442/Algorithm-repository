@@ -26,5 +26,5 @@ for a in n:
             left += 1
             right -= 1
 
-
+    result.sort()
     print(result[0], result[1])
