@@ -1,11 +1,17 @@
+def gcd(x, y):
+    while(y):
+        x, y = y, x % y
+    return x
+
+
+
 n = list(map(int, input().split()))
 
-can = 10000
+can = n[0]
 
 for i in range(1, len(n)):
-    if (can > n[i] - n[i-1]):
-        can = n[i] - n [i-1]
-    
+    can = gcd(can, n[i])
+
 result = 0    
 print(can)
 for i in range(1, len(n)):
