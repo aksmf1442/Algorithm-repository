@@ -2,20 +2,24 @@ n = int(input())
 counter = list(map(int, input().split()))
 counter.sort()
 
-candidate = [0 for _ in range(len(counter))]
 result = 0
+left = 1
+right = max(counter) * n
 
-while n >= 1:
-    idx = 0
-    can = 1000001
-    for i in range(len(counter)):
-        if (candidate[i] * counter[i]) < can:
-            idx =  i
-            can = candidate * counter[i]
-    candidate[idx] += 1
-    n -= 1
+while left < right:
+    mid = (left + right) // 2
+    total = 0
+    
+    print(left, right, mid)
 
-for i in range(len(counter)):
-    if result < counter[i] * candidate[i]:
-        result = counter[i] * candidate[i]
+    for i in counter:
+        total += mid // i
+    
+    if total >= n:
+        right = mid
+    else:
+        left = mid + 1
+
+result = left
+
 print(result)
