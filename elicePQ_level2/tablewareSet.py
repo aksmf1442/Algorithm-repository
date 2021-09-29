@@ -2,9 +2,9 @@ c, s, e = map(int, input().split())
 
 twSet = min([c//2, s])
 
-remainder = ((c//2) - twSet) + (s - twSet) // 2
+remainder = ((c//2) - twSet) + (s - twSet)
 
 if (remainder < e):
-    twSet -= (e - remainder)
-
+    candidate = ((e - remainder -1) // 3) + 1
+    twSet -= candidate
 print(twSet)
