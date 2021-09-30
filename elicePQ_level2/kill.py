@@ -2,7 +2,7 @@ n = list(input())
 candidate = []
 result = "YES"
 
-print(n)
+
 while n:
     s = n.pop(0)
 
