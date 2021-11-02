@@ -5,9 +5,11 @@ function solution(n) {
     for (let i = 1; i <= n; i++) {
         if (i ** 2 === n) {
             answer = (i + 1) ** 2;
+            break;
         }
         
-        if (i ** 2 >= n) {
+        if (i ** 2 > n) {
+            answer =
             break;
         }
     }
