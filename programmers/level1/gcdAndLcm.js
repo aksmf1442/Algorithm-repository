@@ -2,7 +2,7 @@
 
 function solution(n, m) {
     let answer = [];
-    result = 0;
+    result = 1;
     for (let i = 2; i <= (n*m); i++) {
         if (n % i === 0 && m % i === 0) {
             result = i;
