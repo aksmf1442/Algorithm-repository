@@ -42,4 +42,5 @@ candidate.extend('*' * multiply)
 candidate.extend('/' * divide)
 
 dfs(candidate, [lis[0]], 1)
-print(maxValue, minValue)
+print(maxValue)
+print(minValue)
