@@ -1,46 +1,37 @@
-def dfs(temp, result, idx):
-    global maxValue, minValue
-    if len(temp) == 0:
-        value = result[0]
-        for i in range(len(result)):
-            if i % 2 != 0:
-                if result[i] == '+':
-                    value = value + result[i+1]
-                
-                if result[i] == '-':
-                    value = value - result[i+1]
-                
-                if result[i] == '*':
-                    value = value * result[i+1]
-                
-                if result[i] == '/':
-                    if value < 0:
-                        value = -(abs(value) // result[i+1])
-                    else:
-                        value = value // result[i+1]
-        maxValue = max(maxValue, value)
-        minValue = min(minValue, value)
-        return
-    
-    for i in range(len(temp)):
-        s = temp[i]
-        can = temp[:i] + temp[i+1:]
-        result.append(s)
-        result.append(lis[idx])
-        dfs(can, result, idx+1)
-        result.pop()
-        result.pop()
-        
 n = int(input())
-lis = list(map(int, input().split()))
-plus, minus, multiply, divide = map(int, input().split())
-candidate = []
-maxValue, minValue = -1000000000, 1000000000
-candidate.extend('+' * plus)
-candidate.extend('-' * minus)
-candidate.extend('*' * multiply)
-candidate.extend('/' * divide)
 
-dfs(candidate, [lis[0]], 1)
-print(maxValue)
-print(minValue)
+data = list(map(int, input().split()))
+
+add, sub, mul, div = map(int, input().split())
+
+min_value = 1e9
+max_value = -1e9
+
+def dfs(i, now):
+    global min_value, max_value, add, sub, mul, div
+    
+    if i == n:
+        min_value = min(min_value, now)
+        max_value = max(max_value, now)
+    else:
+        if add > 0:
+            add -= 1
+            dfs(i + 1, now + data[i])
+            add += 1
+        if sub > 0:
+            sub -= 1
+            dfs(i + 1, now - data[i])
+            sub += 1
+        if mul > 0:
+            mul -= 1
+            dfs(i + 1, now * data[i])
+            mul += 1
+        if div > 0:
+            div -= 1
+            dfs(i + 1, int(now / data[i]))
+            div += 1
+
+dfs(1, data[0])
+
+print(max_value)
+print(min_value)
