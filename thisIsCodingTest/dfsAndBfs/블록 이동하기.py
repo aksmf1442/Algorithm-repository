@@ -49,3 +49,5 @@ def solution(board):
             if next_pos not in visited:
                 q.append((next_pos, cost + 1))
                 visited.append(next_pos)
+                
+                
