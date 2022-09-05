@@ -1,17 +1,19 @@
-from collections import deque
-
 def solution(prices):
-    queue = deque(prices)
-    answer = []
+    n = len(prices)
+    answer = [0] * n
 
-    while queue:
-        price = queue.popleft()
-        sec = 0
-        for q in queue:
-            sec += 1
-            if price > q:
-                break
-        answer.append(sec)
+    stack = []
+    for i in range(n):
+        while stack and prices[stack[-1]] > prices[i]:
+            top = stack.pop()
+            answer[top] = i - top
+
+        stack.append(i)
+
+    while stack:
+        top = stack.pop()
+        answer[top] = n - 1 - top
+
     return answer
 
 # [4, 3, 1, 1, 0]
