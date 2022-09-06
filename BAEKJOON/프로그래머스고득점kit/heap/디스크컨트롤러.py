@@ -4,36 +4,30 @@ import heapq
 
 def solution(jobs):
     q = []
-    answer = 0
-    [heapq.heappush(q, (i[1], i[0])) for i in jobs]
     times = 0
-    progress = 0
-    progressStart = 0
-    while q or progress != 0:
-        if progress == 0:
-            answer += (times - progressStart)
-            task = 0
-            candidate = []
-            while task == 0:
-                taskLength, start = heapq.heappop(q)
-                if start > times:
-                    candidate.append((taskLength, start))
-                    if not q:
-                        [heapq.heappush(q, (i, j)) for i, j in candidate]
-                        candidate = []
-                        times += 1
-                else:
-                    task = taskLength
-                    progressStart = start
+    answer = 0
+    length = len(jobs)
+    while jobs or q:
+        # 현재 작업할 수 있는 task heapq에 넣기
+        removeJobs = []
+        for idx, item in enumerate(jobs):
+            if item[0] <= times:
+                heapq.heappush(q, (item[1], item[0]))
+                removeJobs.append(idx)
 
-            if candidate:
-                [heapq.heappush(q, (i, j)) for i, j in candidate]
-            progress = task
+        for i in reversed(removeJobs):
+            jobs.pop(i)
+
+        if q:
+            time, start = heapq.heappop(q)
+            times += time
+            answer += (times - start)
         else:
-            progress -= 1
             times += 1
 
-    answer += (times - progressStart)
-    return answer // len(jobs)
 
-print(solution([[0, 3], [5, 9], [6, 6]]	))
+    return answer // length
+
+
+
+print(solution([[0, 3], [1, 9], [2, 6]]	))
