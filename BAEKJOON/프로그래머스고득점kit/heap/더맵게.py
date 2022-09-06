@@ -3,6 +3,7 @@
 # 3. 모든 음식의 스코빌 지수가 K이상이 될 때까지 위의 과정을 반복
 import heapq
 
+
 def solution(scoville, K):
     answer = 0
     q = []
@@ -18,8 +19,9 @@ def solution(scoville, K):
             break
         second = heapq.heappop(q)
         heapq.heappush(q, first + (second * 2))
-        answer+=1
+        answer += 1
 
     return answer if isPossible else -1
+
 
 print(solution([1, 2, 3, 9, 10, 12], 7))
