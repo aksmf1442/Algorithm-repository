@@ -80,8 +80,8 @@ public class MainCraft {
         }
 
         bw.write(answerSeconds + " " + answerHeight);
-
         bw.flush();
+
         bw.close();
     }
 }
